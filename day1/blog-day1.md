@@ -87,4 +87,28 @@ that I have here. Haskell doesn't like the null -> syntax so obviously there's a
 
 	colour_combs :: [(String, String)]
 
-The 
+## Four
+The fourth task was to build a multiplication table using list comprehension. This seemed pretty straightforward:
+
+	mult_table :: [Integer] -> [(Integer, Integer, Integer)]
+	mult_table nums = [(x, y, x * y) | x <- nums, y <- nums]
+
+It would be nice to format the output a little more nicely, but we haven't covered anything about I/O yet...
+
+## Five
+The fifth problem was a repeat of the map colouring problem from the Prolog chapter, this seemed to be an interesting problem because this problem was given as one of the examples of how using Prolog for certain kinds of problem could dramatically simplify the task of creating a solution. 
+
+For this I knew that the core of the solution would be a list comprehension with the constraints of which states border each other (and therefore cannot have the same colour) as guards. I chose to implement the function as one that outputs a list of tuples (state_name, colour) like so:
+
+	states = ["Tennessee", "Mississippi", "Alabama", "Georgia", "Florida"]
+	colours = ["Red", "Green", "Blue"]
+	map_colours = [[("Tennessee", t),("Mississippi", m), ("Alabama",a),
+		("Georgia", g), ("Florida", f)] | 
+		m <- colours, t <- colours, a <- colours, g <- colours, f <- colours,
+		m /= t, m /= a, t /= a, t /= g, a /= g, a /= f, g /= f]
+	 
+I've implemented the states and colours as value lists rather than as inputs to the function, and I presume that bundling them within the scope of the module is the idiomatic way of encapsulation with Haskell, rather than hiding them using closures or another mechanism. Again pretty-printing the output would have improved things, but this will have to wait. Looking at other's solutions a common thread seems to be to output a 5-tuple with the order of entries corresponding to states, I didn't like this as the output requires implicit knowledge to interpret, and an approach that approached the hash solution that I would use in other languages like Ruby or CoffeeScript seemed more readable.
+
+Now: looking forward to day 2 :-)
+
+
