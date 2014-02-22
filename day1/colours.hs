@@ -14,7 +14,7 @@ module Main where
 			True (elem ("black","blue") results) ),
 		TestCase (assertEqual "results should NOT contain (blue, black)" 
 			False (elem ("blue","black") results) ),		
-		TestCase (assertEqual "results should contain 7 tuples"
+		TestCase (assertEqual "results should contain 15 tuples"
 			15 (length results) ) ]
 
 	main = do runTestTT tests
